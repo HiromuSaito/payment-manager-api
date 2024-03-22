@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: stock-manager-api
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/db
+    username: admin
+    password: password
+    driverClassName: com.mysql.jdbc.Driver
