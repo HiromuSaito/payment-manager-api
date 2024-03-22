@@ -1,4 +1,4 @@
-package com.stock.manager.stockmanagerapi.infrastructure.database
+package com.stock.manager.stockmanagerapi.infrastructure.database.config
 
 
 import org.jetbrains.exposed.sql.Database

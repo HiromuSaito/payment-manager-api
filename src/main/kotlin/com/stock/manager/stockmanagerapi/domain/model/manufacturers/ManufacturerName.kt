@@ -1,4 +1,4 @@
-package com.stock.manager.stockmanagerapi.domain.manufacturers
+package com.stock.manager.stockmanagerapi.domain.model.manufacturers
 
 private const val MAX_NAME_LENGTH = 100
 

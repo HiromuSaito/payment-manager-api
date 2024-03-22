@@ -1,4 +1,4 @@
-package com.stock.manager.stockmanagerapi.domain.payments
+package com.stock.manager.stockmanagerapi.domain.model.payments
 
 private const val MIN_PAYMENT_ID = 1L
 
