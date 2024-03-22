@@ -1,0 +1,8 @@
+@startuml usecase
+left to right direction
+
+actor ユーザー
+rectangle {
+    ユーザー --> (払出を記録する)
+}
+@enduml
