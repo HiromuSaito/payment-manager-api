@@ -14,7 +14,7 @@ data class PaymentResponse(
     val itemCode: String,
     @JsonFormat(pattern = "yyyy/MM/dd")
     val paymentDate: LocalDate,
-    val paymentCount: Long,
+    val paymentAmount: Long,
     val note: String?
 ) {
     constructor(model: Payment) : this(
