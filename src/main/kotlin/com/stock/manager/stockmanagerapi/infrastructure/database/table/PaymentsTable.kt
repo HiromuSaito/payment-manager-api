@@ -9,5 +9,5 @@ object PaymentsTable : LongIdTable("payments") {
     val itemCode = varchar("item_code", 128)
     val paymentDate = datetime("payment_date")
     val paymentAmount = long("payment_amount")
-    val note = varchar("note", 400)
+    val note = varchar("note", 400).nullable()
 }

@@ -12,4 +12,8 @@ class PaymentService(
     fun getList(): List<Payment> {
         return paymentRepository.findAll()
     }
+
+    fun registerPayment(payment: Payment) {
+        paymentRepository.register(payment)
+    }
 }
