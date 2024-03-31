@@ -4,5 +4,8 @@ left to right direction
 actor ユーザー
 rectangle {
     ユーザー --> (払出を記録する)
+    ユーザー --> (払出を参照する)
+    ユーザー --> (商品を登録する)
+    ユーザー --> (商品を参照する)
 }
 @enduml
