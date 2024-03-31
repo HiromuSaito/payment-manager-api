@@ -1,6 +1,6 @@
 CREATE TABLE items (
     item_code varchar(128) NOT NULL,
-    manufacturer_code date NOT NULL,
+    manufacturer_code varchar(128) NOT NULL,
     item_name varchar(200) NOT NULL,
     is_eop BOOLEAN NOT NULL,
     PRIMARY KEY (item_code)
