@@ -25,7 +25,7 @@ class QRService {
         val writer = QRCodeWriter()
         val bitMatrix = writer.encode(contents, format, QR_WIDTH_SIZE, QR_HEIGHT_SIZE, hints)
         val image = MatrixToImageWriter.toBufferedImage(bitMatrix)
-        val output = File("tmp/$contents")
+        val output = File("$contents.png")
         ImageIO.write(image, "png", output)
         return output
     }
