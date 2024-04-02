@@ -6,13 +6,16 @@ import org.springframework.stereotype.Service
 
 @Service
 class ItemsService(
-    val itemsRepository: ItemsRepository
+    val itemsRepository: ItemsRepository,
+    val qrService: QRService
 ) {
     fun getItemsList(): List<Item> {
         return itemsRepository.findAll()
     }
 
     fun register(item: Item) {
+        val qrFile = qrService.createQR(item.itemCode.value)
+        //S3への格納
         itemsRepository.register(item)
     }
 }
