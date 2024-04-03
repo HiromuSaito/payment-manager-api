@@ -1,6 +1,7 @@
 package com.stock.manager.paymentmanagerapi.presentation.controller
 
 import com.stock.manager.paymentmanagerapi.application.service.ItemsService
+import com.stock.manager.paymentmanagerapi.domain.model.items.ItemCode
 import com.stock.manager.paymentmanagerapi.presentation.form.ItemCodeListResponse
 import com.stock.manager.paymentmanagerapi.presentation.form.ItemListResponse
 import com.stock.manager.paymentmanagerapi.presentation.form.ItemRegisterRequest
@@ -34,5 +35,10 @@ class ItemsController(
     fun getItemCodeList(): ItemCodeListResponse {
         val itemCodeList = itemsService.getItemsList().map { it.itemCode.value }
         return ItemCodeListResponse(itemCodeList)
+    }
+
+    @GetMapping("/qr/{id}")
+    fun download(@PathVariable id: String): String {
+        return itemsService.getItemQr(ItemCode(id))
     }
 }
