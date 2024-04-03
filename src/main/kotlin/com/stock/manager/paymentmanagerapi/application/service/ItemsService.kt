@@ -12,6 +12,12 @@ class ItemsService(
     val qrService: QRService,
     val s3Client: S3Client
 ) {
+
+    fun getItem(itemCode: String): Item {
+        return itemsRepository.find(itemCode)
+            ?: throw IllegalArgumentException("存在しない商品コードです。商品コード=$itemCode")
+    }
+
     fun getItemsList(): List<Item> {
         return itemsRepository.findAll()
     }

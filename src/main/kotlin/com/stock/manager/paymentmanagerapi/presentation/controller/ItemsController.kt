@@ -20,6 +20,11 @@ class ItemsController(
         return ItemListResponse(items)
     }
 
+    @GetMapping("/{id}")
+    fun getItem(@PathVariable itemCode: String): ItemResponse {
+        return ItemResponse(itemsService.getItem(itemCode))
+    }
+
     @PostMapping
     fun registerItem(@RequestBody body: ItemRegisterRequest) {
         itemsService.register(body.toModel())
