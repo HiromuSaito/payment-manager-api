@@ -28,22 +28,14 @@ class ItemsService(
         runBlocking {
             s3Client.downloadObject("${itemCode.value}.png", path)
         }
-        return getBase64(path)
+        return convertBase64QR(path)
     }
 
-    private fun getBase64(path: Path): String {
+    private fun convertBase64QR(path: Path): String {
         val file = path.toFile()
-
-        val contentType = Files.probeContentType(file.toPath())
         val data = Files.readAllBytes(file.toPath())
         val base64str = Base64.getEncoder().encodeToString(data)
-
-        val sb = StringBuilder()
-        sb.append("data:")
-        sb.append(contentType)
-        sb.append(";base64,")
-        sb.append(base64str)
-        return sb.toString()
+        return "data:image/png;base64,${base64str}"
     }
 
     fun getItemsList(): List<Item> {
