@@ -6,10 +6,7 @@ import com.stock.manager.paymentmanagerapi.domain.repository.ItemsRepository
 import com.stock.manager.paymentmanagerapi.domain.s3.S3Client
 import kotlinx.coroutines.runBlocking
 import org.springframework.stereotype.Service
-import java.nio.file.Files
-import java.nio.file.Path
 import java.nio.file.Paths
-import java.util.*
 
 @Service
 class ItemsService(
@@ -22,21 +19,7 @@ class ItemsService(
         return itemsRepository.find(itemCode)
             ?: throw IllegalArgumentException("存在しない商品コードです。商品コード=$itemCode")
     }
-
-    fun getItemQr(itemCode: ItemCode): String {
-        val path = Paths.get(itemCode.value)
-        runBlocking {
-            s3Client.downloadObject("${itemCode.value}.png", path)
-        }
-        return convertBase64QR(path)
-    }
-
-    private fun convertBase64QR(path: Path): String {
-        val file = path.toFile()
-        val data = Files.readAllBytes(file.toPath())
-        val base64str = Base64.getEncoder().encodeToString(data)
-        return "data:image/png;base64,${base64str}"
-    }
+    
 
     fun getItemsList(): List<Item> {
         return itemsRepository.findAll()
@@ -50,5 +33,13 @@ class ItemsService(
             qr.delete()
         }
         itemsRepository.register(item)
+    }
+
+    fun downloadQR(itemCode: ItemCode) {
+        val pathStr = "${itemCode.value}.png"
+        val path = Paths.get(pathStr)
+        runBlocking {
+            s3Client.downloadObject(pathStr, path)
+        }
     }
 }
