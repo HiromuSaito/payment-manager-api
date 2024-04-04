@@ -12,6 +12,18 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class ItemsRepositoryImpl : ItemsRepository {
+
+    override fun find(itemCode: String): Item? {
+        return transaction {
+            addLogger(StdOutSqlLogger)
+            ItemsTable.select {
+                ItemsTable.itemCode eq itemCode
+            }.map { toModel(it) }
+                .singleOrNull()
+
+        }
+    }
+
     override fun findAll(): List<Item> {
         return transaction {
             addLogger(StdOutSqlLogger)
