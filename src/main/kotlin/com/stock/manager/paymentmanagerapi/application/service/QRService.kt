@@ -10,8 +10,8 @@ import java.io.File
 import java.util.*
 import javax.imageio.ImageIO
 
-private const val QR_WIDTH_SIZE = 160
-private const val QR_HEIGHT_SIZE = 100
+private const val QR_WIDTH_SIZE = 600
+private const val QR_HEIGHT_SIZE = 600
 
 @Service
 class QRService {
